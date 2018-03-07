@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Layout from './Layout';
 import Main from './components/Main'
 import Building from './views/Building';
-import Schedule from './views/Schedule';
+import Calendar from './views/Calendar';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
@@ -15,7 +15,7 @@ class App extends Component {
               <Layout>
                 <Route exact path="/" component={ Main } />
                 <Route path="/building" component={ Building } />
-                <Route path="/schedule" component={ Schedule } />
+                <Route path="/calendar" component={ Calendar } />
               </Layout>
             </Switch>
 		    );

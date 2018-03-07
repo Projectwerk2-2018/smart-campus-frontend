@@ -4,7 +4,7 @@ class Schedule extends Component {
 	  render() {
 	      return(
 		    <div className="App">
-                Hello! This is schedule.
+                Hello! This is calendar.
             </div>
 	      );
 	  }
