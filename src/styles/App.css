@@ -2,3 +2,9 @@
     position: relative;
     top: 30%;
 }
+
+.heading {
+    margin-left: 10px;
+    font-size: 22px;
+    font-weight: 700;
+}
