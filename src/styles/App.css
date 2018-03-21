@@ -1,10 +1,16 @@
-.floor {
-    position: relative;
-    top: 30%;
-}
-
 .heading {
     margin-left: 10px;
     font-size: 22px;
     font-weight: 700;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+}
+
+.txt1 {
+    position: absolute;
+    bottom: 170px;
+    left: 190px;
 }
