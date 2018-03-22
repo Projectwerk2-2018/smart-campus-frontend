@@ -5,8 +5,8 @@ class Header extends Component {
     render() {
         return(
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">
-                    <img src={require("../img/logo.png")} width="30" height="30" class="d-inline-block align-top" alt=""></img>
+                <a class="navbar-brand" href="/">
+                    <img src={require("../img/logo.png")} width="28" height="30" class="d-inline-block align-top" alt=""></img>
                     <span class="heading">SMART CAMPUS</span>
                 </a>
                 <div class="container-fluid">

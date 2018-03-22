@@ -7,17 +7,9 @@ class Building extends Component {
 		super(props); 
 
 		this.state = {
-			MAP: {
-				name: "my-map",
-				areas: [
-				  { shape: "rect", coords: [1249,209,1492,513] },
-				  { shape: "rect", coords: [126,250,264,513] },
-				  { shape: "rect", coords: [271,250,450,513] },
-				  { shape: "rect", coords: [455,250,615,513] },
-				  { shape: "rect", coords: [620,250,780,513] }
-				]
-			},
+			MAP: {},
 			width: 0,
+			height: 0,
 			data: "data"
 		}
 		this.updateDimensions = this.updateDimensions.bind(this)
@@ -25,6 +17,7 @@ class Building extends Component {
 
 	updateDimensions() {
 		var width = window.innerWidth,
+			height = window.innerHeight,
 			MAP = {
 				name: "my-map",
 				areas: [
@@ -36,11 +29,11 @@ class Building extends Component {
 				]
 			}
 	
-		this.setState({width, MAP});
+		this.setState({width, height, MAP});
 	}
 
 	componentWillMount() {
-			this.updateDimensions();
+		this.updateDimensions();
 	}
 
 	shouldComponentUpdate() {
@@ -59,20 +52,13 @@ class Building extends Component {
 	//<ImageMapper src={require("../img/floor_plan.svg")} map={MAP} width={this.state.width} fillColor={"rgba(141, 128, 229, 0.6)"}/>
 
 	render() {
-		var style = {position: 'absolute', top: 300, left: 150}
+		var style = {position: 'absolute', top: this.state.height*0.35, left: this.state.width*0.08}
 
 	    return (
-			<div class="row">
-				<div class="col-9">
-					<div className="container">
-						<ImageMapper src={require("../img/floor_plan.svg")} map={this.state.MAP} width={this.state.width*0.7} fillColor={"rgba(141, 128, 229, 0.6)"}/>
-						<span style={style}>text: {this.state.data}</span>
-					</div>
+				<div className="box">
+					<ImageMapper src={require("../img/floor_plan.svg")} map={this.state.MAP} width={this.state.width*0.7} fillColor={"rgba(141, 128, 229, 0.6)"}/>
+					<span style={style}>text: {this.state.data}</span>
 				</div>
-				<div class="col-3">
-					
-				</div>
-			</div>
 	    );
 	}
 }

@@ -4,13 +4,19 @@
     font-weight: 700;
 }
 
-.container {
-    position: relative;
-    text-align: center;
+.navbar {
+    z-index: 1000;
 }
 
-.txt1 {
-    position: absolute;
-    bottom: 170px;
-    left: 190px;
+.home_pg {
+    background: url("../img/bg.png") left top fixed no-repeat;
+    background-size: 100%;
+    min-width: 1024px;
+    min-height: 720px;
+}
+
+.box {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
 }
