@@ -10,9 +10,13 @@ class Building extends Component {
 			MAP: {},
 			width: 0,
 			height: 0,
-			data: "data"
+			data: "data",
+			temp: []
 		}
-		this.updateDimensions = this.updateDimensions.bind(this)
+		this.updateDimensions = this.updateDimensions.bind(this);
+		this.temp_style = this.temp_style.bind(this);
+		this.humid_style = this.humid_style.bind(this);
+		this.occup_style = this.occup_style.bind(this);
 	}
 
 	updateDimensions() {
@@ -42,22 +46,77 @@ class Building extends Component {
 	
 	componentDidMount() {
 			window.addEventListener("resize", this.updateDimensions);
+			this.temp_style();
 	}
 	
 	componentWillUnmount() {
 			window.removeEventListener("resize", this.updateDimensions);
 	}
 
+	temp_style() {
+		var temp = [];
+		var arr = [];
+		var margin = 0.075;
+
+		for (var i = 0; i < 4; i++) {
+			temp[i] = { position: 'absolute',
+						top: this.state.width*0.15,
+						left: this.state.width*margin,
+						'font-size': this.state.width*0.007,
+						'font-weight': 'bold' }
+			margin = margin+0.078;
+			arr[i] = <span style={temp[i]}>TEMP: {this.state.data}</span>
+		}
+
+		return arr
+	}
+
+	humid_style() {
+		var humid = [];
+		var arr = [];
+		var margin = 0.073;
+
+		for (var i = 0; i < 4; i++) {
+			humid[i] = { position: 'absolute',
+						top: this.state.width*0.16,
+						left: this.state.width*margin,
+						'font-size': this.state.width*0.007,
+						'font-weight': 'bold' }
+			margin = margin+0.078;
+			arr[i] = <span style={humid[i]}>HUMID: {this.state.data}</span>
+		}
+
+		return arr
+	}
+
+	occup_style() {
+		var occup = [];
+		var arr = [];
+		var margin = 0.073;
+
+		for (var i = 0; i < 4; i++) {
+			occup[i] = { position: 'absolute',
+						top: this.state.width*0.17,
+						left: this.state.width*margin,
+						'font-size': this.state.width*0.007,
+						'font-weight': 'bold' }
+			margin = margin+0.078;
+			arr[i] = <span style={occup[i]}>OCCUP: {this.state.data}</span>
+		}
+		
+		return arr
+	}
+
 	//<img src={require("../img/floor.svg")} className="img-fluid floor" alt="Responsive image"></img>
 	//<ImageMapper src={require("../img/floor_plan.svg")} map={MAP} width={this.state.width} fillColor={"rgba(141, 128, 229, 0.6)"}/>
 
 	render() {
-		var style = {position: 'absolute', top: this.state.height*0.35, left: this.state.width*0.08}
-
 	    return (
 				<div className="box">
 					<ImageMapper src={require("../img/floor_plan.svg")} map={this.state.MAP} width={this.state.width*0.7} fillColor={"rgba(141, 128, 229, 0.6)"}/>
-					<span style={style}>text: {this.state.data}</span>
+					{this.temp_style()}
+					{this.humid_style()}
+					{this.occup_style()}
 				</div>
 	    );
 	}
