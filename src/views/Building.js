@@ -58,13 +58,20 @@ class Building extends Component {
 		var arr = [];
 		var margin = 0.075;
 
-		for (var i = 0; i < 4; i++) {
+		for (var i = 0; i < 5; i++) {
 			temp[i] = { position: 'absolute',
 						top: this.state.width*0.15,
 						left: this.state.width*margin,
 						'font-size': this.state.width*0.007,
 						'font-weight': 'bold' }
 			margin = margin+0.078;
+			if (i == 4) {
+				temp[i] = { position: 'absolute',
+							top: this.state.width*0.13,
+							left: this.state.width*0.62,
+							'font-size': this.state.width*0.007,
+							'font-weight': 'bold' }
+			}
 			arr[i] = <span style={temp[i]}>TEMP: {this.state.data}</span>
 		}
 
@@ -76,13 +83,20 @@ class Building extends Component {
 		var arr = [];
 		var margin = 0.073;
 
-		for (var i = 0; i < 4; i++) {
+		for (var i = 0; i < 5; i++) {
 			humid[i] = { position: 'absolute',
 						top: this.state.width*0.16,
 						left: this.state.width*margin,
 						'font-size': this.state.width*0.007,
 						'font-weight': 'bold' }
 			margin = margin+0.078;
+			if (i == 4) {
+				humid[i] = { position: 'absolute',
+							top: this.state.width*0.14,
+							left: this.state.width*0.618,
+							'font-size': this.state.width*0.007,
+							'font-weight': 'bold' }
+			}
 			arr[i] = <span style={humid[i]}>HUMID: {this.state.data}</span>
 		}
 
@@ -94,13 +108,20 @@ class Building extends Component {
 		var arr = [];
 		var margin = 0.073;
 
-		for (var i = 0; i < 4; i++) {
+		for (var i = 0; i < 5; i++) {
 			occup[i] = { position: 'absolute',
 						top: this.state.width*0.17,
 						left: this.state.width*margin,
 						'font-size': this.state.width*0.007,
 						'font-weight': 'bold' }
 			margin = margin+0.078;
+			if (i == 4) {
+				occup[i] = { position: 'absolute',
+							top: this.state.width*0.15,
+							left: this.state.width*0.618,
+							'font-size': this.state.width*0.007,
+							'font-weight': 'bold' }
+			}
 			arr[i] = <span style={occup[i]}>OCCUP: {this.state.data}</span>
 		}
 		
@@ -113,7 +134,7 @@ class Building extends Component {
 	render() {
 	    return (
 				<div className="box">
-					<ImageMapper src={require("../img/floor_plan.svg")} map={this.state.MAP} width={this.state.width*0.7} fillColor={"rgba(141, 128, 229, 0.6)"}/>
+					<ImageMapper src={require("../img/floor_plan.svg")} map={this.state.MAP} width={this.state.width*0.7} fillColor={"rgba(141, 128, 229, 0.3)"}/>
 					{this.temp_style()}
 					{this.humid_style()}
 					{this.occup_style()}
