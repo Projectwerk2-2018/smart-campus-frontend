@@ -2,7 +2,7 @@ import axios from 'axios';
 
 function getData() {
     return new Promise((resolve, reject) => {
-        axios.get("http://projectwerk2.herokuapp.com/api/measurements")
+        axios.get(/* TODO */)
             .then(results => {
                 const sensor_data = results.data.map(element => {
                     return element;

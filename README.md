@@ -15,6 +15,7 @@ $ git clone git@github.com:Projectwerk2-2018/smart-campus-frontend.git
 Start the app with:
 
 ```bash
+$ cd smart-campus-frontend
 $ npm start
 ```
 
@@ -26,6 +27,13 @@ Usage of third party libraries: react-router, axios, react-highcharts, react-ima
 
 ## HOME
 
+Introduction homescreen of the web-app.
+
 ## BUILDING
 
+Interactive floor plan of the KU Leuven campus building.
+Rooms 85, 80, 75, 65 and 01 interactive -> onClick shows historical data in form of a graph underneath the floor plan.
+
 ## CALENDAR
+
+TODO
