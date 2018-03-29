@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ImageMapper from 'react-image-mapper';
-import Highcharts from 'highcharts';
 const ReactHighcharts = require('react-highcharts');
 
 class Building extends Component {
@@ -42,14 +41,13 @@ class Building extends Component {
 		this.updateDimensions();
 	}
 
-//	shouldComponentUpdate() {
-//		window.location.reload()
-//	}
+	componentWillUpdate() {
+//		window.location.reload();
+	}
 	
 	componentDidMount() {
 		window.addEventListener("resize", this.updateDimensions);
 		document.getElementById("chrt").style.display = "none";
-		this.temp_style();
 	}
 	
 	componentWillUnmount() {
@@ -155,7 +153,6 @@ class Building extends Component {
 				},
 				min: 0
 			},
-		
 			plotOptions: {
 				spline: {
 					marker: {
@@ -163,7 +160,6 @@ class Building extends Component {
 					}
 				}
 			},
-		
 			series: [{
 				name: 'Winter 2013-2014',
 				data: [
@@ -193,19 +189,19 @@ class Building extends Component {
 
 	render() {
 	    return (
-				<div className="box">
-					<ImageMapper src={require("../img/floor_plan.svg")}
-								map={this.state.MAP}
-								width={this.state.width*0.7}
-								fillColor={"rgba(141, 128, 229, 0.3)"}
-								onClick={(this.state.MAP.areas, this.click_handle)}/>
-					{this.temp_style()}
-					{this.humid_style()}
-					{this.occup_style()}
-					<div className="chrt" id="chrt" key="chrt">
-						<ReactHighcharts config = {this.state.chart}></ReactHighcharts>
-					</div>
+			<div className="box">
+				<ImageMapper src={require("../img/floor_plan.svg")}
+							map={this.state.MAP}
+							width={this.state.width*0.7}
+							fillColor={"rgba(141, 128, 229, 0.3)"}
+							onClick={(this.state.MAP.areas, this.click_handle)}/>
+				{this.temp_style()}
+				{this.humid_style()}
+				{this.occup_style()}
+				<div className="chrt" id="chrt" key="chrt">
+					<ReactHighcharts config = {this.state.chart}></ReactHighcharts>
 				</div>
+			</div>
 	    );
 	}
 }

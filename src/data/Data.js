@@ -2,14 +2,15 @@ import axios from 'axios';
 
 function getData() {
     return new Promise((resolve, reject) => {
-        axios.get(/* TODO TODO TODO TODO */)
+        axios.get("http://projectwerk2.herokuapp.com/api/measurements")
             .then(results => {
-                const regionLevels = results.data.map(element => {
+                const sensor_data = results.data.map(element => {
                     return element;
                 });
-                resolve(regionLevels);
+                resolve(sensor_data);
             })
             .catch(error => {
+                console.log(error);
                 reject();
             })
     });
