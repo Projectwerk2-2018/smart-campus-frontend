@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Data from '../data/Data'
 import ImageMapper from 'react-image-mapper';
 const ReactHighcharts = require('react-highcharts');
 
@@ -10,7 +11,7 @@ class Building extends Component {
 		this.state = {
 			MAP: {},
 			width: 0,
-			data: "data",
+			sensor_data: "",
 			chart: {}
 		}
 
@@ -26,11 +27,11 @@ class Building extends Component {
 			MAP = {
 				name: "my-map",
 				areas: [
-				  { id: "01", shape: "rect", coords: [width*0.583, width*0.097, width*0.696, width*0.239] },
-				  { id: "85", shape: "rect", coords: [width*0.059, width*0.116, width*0.123, width*0.239] },
-				  { id: "80", shape: "rect", coords: [width*0.126, width*0.116, width*0.210, width*0.239] },
-				  { id: "75", shape: "rect", coords: [width*0.213, width*0.116, width*0.287, width*0.239] },
-				  { id: "65", shape: "rect", coords: [width*0.289, width*0.116, width*0.364, width*0.239] }
+				  { id: "2.01", shape: "rect", coords: [width*0.583, width*0.097, width*0.696, width*0.239] },
+				  { id: "2.85", shape: "rect", coords: [width*0.059, width*0.116, width*0.123, width*0.239] },
+				  { id: "2.80", shape: "rect", coords: [width*0.126, width*0.116, width*0.210, width*0.239] },
+				  { id: "2.75", shape: "rect", coords: [width*0.213, width*0.116, width*0.287, width*0.239] },
+				  { id: "2.65", shape: "rect", coords: [width*0.289, width*0.116, width*0.364, width*0.239] }
 				]
 			}
 	
@@ -48,6 +49,9 @@ class Building extends Component {
 	componentDidMount() {
 		window.addEventListener("resize", this.updateDimensions);
 		document.getElementById("chrt").style.display = "none";
+		Data.getData().then(result => {
+			this.setState({ sensor_data: result });
+		});
 	}
 	
 	componentWillUnmount() {
@@ -57,7 +61,8 @@ class Building extends Component {
 	temp_style() {
 		var temp = [];
 		var arr = [];
-		var margin = 0.075;
+		var margin = 0.072;
+//		var value = this.state.sensor_data.map()
 
 		for (var i = 0; i < 5; i++) {
 			temp[i] = { position: 'absolute',
@@ -65,7 +70,7 @@ class Building extends Component {
 						left: this.state.width*margin,
 						'font-size': this.state.width*0.007,
 						'font-weight': 'bold' }
-			margin = margin+0.078;
+			margin = margin+0.079;
 			if (i === 4) {
 				temp[i] = { position: 'absolute',
 							top: this.state.width*0.13,
@@ -73,7 +78,9 @@ class Building extends Component {
 							'font-size': this.state.width*0.007,
 							'font-weight': 'bold' }
 			}
-			arr[i] = <span style={temp[i]}>TEMP: {this.state.data}</span>
+			if (this.state.sensor_data[i] !== undefined) {
+				arr[i] = <span style={temp[i]}>TEMP: {this.state.sensor_data[i].value + "°C"}</span>
+			}
 		}
 
 		return arr
@@ -82,7 +89,7 @@ class Building extends Component {
 	humid_style() {
 		var humid = [];
 		var arr = [];
-		var margin = 0.073;
+		var margin = 0.071;
 
 		for (var i = 0; i < 5; i++) {
 			humid[i] = { position: 'absolute',
@@ -90,7 +97,7 @@ class Building extends Component {
 						left: this.state.width*margin,
 						'font-size': this.state.width*0.007,
 						'font-weight': 'bold' }
-			margin = margin+0.078;
+			margin = margin+0.079;
 			if (i === 4) {
 				humid[i] = { position: 'absolute',
 							top: this.state.width*0.14,
@@ -107,7 +114,7 @@ class Building extends Component {
 	occup_style() {
 		var occup = [];
 		var arr = [];
-		var margin = 0.073;
+		var margin = 0.071;
 
 		for (var i = 0; i < 5; i++) {
 			occup[i] = { position: 'absolute',
@@ -115,7 +122,7 @@ class Building extends Component {
 						left: this.state.width*margin,
 						'font-size': this.state.width*0.007,
 						'font-weight': 'bold' }
-			margin = margin+0.078;
+			margin = margin+0.079;
 			if (i === 4) {
 				occup[i] = { position: 'absolute',
 							top: this.state.width*0.15,
@@ -188,6 +195,7 @@ class Building extends Component {
 	//<ImageMapper src={require("../img/floor_plan.svg")} map={MAP} width={this.state.width} fillColor={"rgba(141, 128, 229, 0.6)"}/>
 
 	render() {
+		console.log(this.state.sensor_data[0])
 	    return (
 			<div className="box">
 				<ImageMapper src={require("../img/floor_plan.svg")}
