@@ -26,3 +26,8 @@
     left: 50%;
     transform: translate(-50%);
 }
+
+label {
+    color: rgb(161, 161, 161);
+    padding-right: 5px; 
+}
