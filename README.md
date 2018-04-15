@@ -43,5 +43,7 @@ Forms for adding new locations, devices and sensors.
 ## CALENDAR
 
 > TODO -> Add calendar component.
+
 > TODO -> Add ability to create and delete events in the calendar.
+
 > TODO -> Authorization needed to access this module.
