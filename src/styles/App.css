@@ -31,3 +31,8 @@ label {
     color: rgb(161, 161, 161);
     padding-right: 5px; 
 }
+
+.toggle_btns {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}

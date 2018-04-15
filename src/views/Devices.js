@@ -21,7 +21,10 @@ class Devices extends Component {
                 name: "",
                 measurement_unit: "",
                 device_id: ""
-            }
+            },
+            loc_btn_hidden: true,
+            dev_btn_hidden: true,
+            sen_btn_hidden: true
         }
         
         this.submit_location = this.submit_location.bind(this);
@@ -89,59 +92,88 @@ class Devices extends Component {
           });
     }
 
+    toggle_loc() {
+        this.setState({ loc_btn_hidden: !this.state.loc_btn_hidden })
+    }
+
+    toggle_dev() {
+        this.setState({ dev_btn_hidden: !this.state.dev_btn_hidden })
+    }
+
+    toggle_sen() {
+        this.setState({ sen_btn_hidden: !this.state.sen_btn_hidden })
+    }
+
 	render() {
-	    return(
-		    <div className="container">
-                ADD NEW LOCATION
+
+        const Loc_form = () => (
+            <div>
                 <form>
                     <div className="form-group">
-                        <label for="exampleFormControlInput1">Name</label>
+                        <label>Name</label>
                         <input type="text" className="form-control" id="loc_name" placeholder="Name of the classroom"></input>
                     </div>
                     <div className="form-group">
-                        <label for="exampleFormControlInput1">Number</label>
+                        <label>Number</label>
                         <input type="text" className="form-control" id="loc_num" placeholder="Number of the classroom"></input>
                     </div>
                     <div className="form-group">
-                        <label for="exampleFormControlTextarea1">Description</label>
+                        <label>Description</label>
                         <textarea className="form-control" id="loc_desc" rows="2"></textarea>
                     </div>
                 </form>
                 <button type="submit" className="btn btn-dark" onClick={this.submit_location}>Submit</button>
-                <br></br>
-                ADD NEW DEVICE
+            </div>
+        )
+
+        const Dev_form = () => (
+            <div>
                 <form>
                     <div className="form-group">
-                        <label for="exampleFormControlInput1">Name</label>
+                        <label>Name</label>
                         <input type="text" className="form-control" id="dev_name" placeholder="Name of the device"></input>
                     </div>
                     <div className="form-group">
-                        <label for="exampleFormControlInput1">EUI</label>
+                        <label>EUI</label>
                         <input type="text" className="form-control" id="dev_eui" placeholder="EUI of the device"></input>
                     </div>
                     <div className="form-group">
-                        <label for="exampleFormControlInput1">Location</label>
+                        <label>Location</label>
                         <input type="text" className="form-control" id="dev_loc" placeholder="ID of the location where the device is"></input>
                     </div>
                 </form>
                 <button type="submit" className="btn btn-dark" onClick={this.submit_device}>Submit</button>
-                <br></br>
-                ADD NEW SENSOR
+            </div>
+        )
+
+        const Sen_form = () => (
+            <div>
                 <form>
                     <div className="form-group">
-                        <label for="exampleFormControlInput1">Name</label>
+                        <label>Name</label>
                         <input type="text" className="form-control" id="sen_name" placeholder="Name of the sensor"></input>
                     </div>
                     <div className="form-group">
-                        <label for="exampleFormControlInput1">Unit</label>
+                        <label>Unit</label>
                         <input type="text" className="form-control" id="sen_unit" placeholder="Measurement unit the sensor uses"></input>
                     </div>
                     <div className="form-group">
-                        <label for="exampleFormControlInput1">Device ID</label>
+                        <label>Device ID</label>
                         <input type="text" className="form-control" id="sen_id" placeholder="ID of the device the sensor is on"></input>
                     </div>
                 </form>
                 <button type="submit" className="btn btn-dark" onClick={this.submit_sensor}>Submit</button>
+            </div>
+        )
+
+	    return(
+		    <div className="container">
+                <button type="button" className="btn btn-dark btn-lg btn-block toggle_btns" onClick={this.toggle_loc.bind(this)}>ADD NEW LOCATION</button>
+                {!this.state.loc_btn_hidden && <Loc_form />}
+                <button type="button" className="btn btn-dark btn-lg btn-block toggle_btns" onClick={this.toggle_dev.bind(this)}>ADD NEW DEVICE</button>
+                {!this.state.dev_btn_hidden && <Dev_form />}
+                <button type="button" className="btn btn-dark btn-lg btn-block toggle_btns" onClick={this.toggle_sen.bind(this)}>ADD NEW SENSOR</button>
+                {!this.state.sen_btn_hidden && <Sen_form />}
             </div>
 	    );
 	}
