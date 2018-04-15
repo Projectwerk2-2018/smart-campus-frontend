@@ -34,6 +34,14 @@ Introduction homescreen of the web-app.
 Interactive floor plan of the KU Leuven campus building.
 Rooms 85, 80, 75, 65 and 01 interactive -> onClick shows historical data in form of a graph underneath the floor plan.
 
+## DEVICES
+
+Forms for adding new locations, devices and sensors.
+
+> TODO -> User has to be logged in in order to access this module. Changes can only be done by admin.
+
 ## CALENDAR
 
-TODO
+> TODO -> Add calendar component.
+> TODO -> Add ability to create and delete events in the calendar.
+> TODO -> Authorization needed to access this module.

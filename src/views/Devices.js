@@ -53,15 +53,9 @@ class Devices extends Component {
     submit_device() {
         var dev_name = document.getElementById("dev_name").value;
         var dev_eui = document.getElementById("dev_eui").value;
-        var dev_loc = document.getElementById("dev_loc").value;
+        var dev_loc = document.getElementById("dev_loc").value; 
 
-        axios.get("https://projectwerk2.herokuapp.com/api/devices")
-            .then(function(response) {
-                console.log(response.data);
-                console.log("hello");
-        });  
-
-        axios.post("", {
+        axios.post("https://projectwerk2.herokuapp.com/api/devices", {
             "name": dev_name,
             "dev-eui": dev_eui,
             "location_id": dev_loc
@@ -106,7 +100,7 @@ class Devices extends Component {
 
 	render() {
 
-        const Loc_form = () => (
+        const LocForm = () => (
             <div>
                 <form>
                     <div className="form-group">
@@ -122,11 +116,11 @@ class Devices extends Component {
                         <textarea className="form-control" id="loc_desc" rows="2"></textarea>
                     </div>
                 </form>
-                <button type="submit" className="btn btn-dark" onClick={this.submit_location}>Submit</button>
+                <button type="submit" className="btn btn-outline-dark submit" onClick={this.submit_location}>Submit</button>
             </div>
         )
 
-        const Dev_form = () => (
+        const DevForm = () => (
             <div>
                 <form>
                     <div className="form-group">
@@ -142,11 +136,11 @@ class Devices extends Component {
                         <input type="text" className="form-control" id="dev_loc" placeholder="ID of the location where the device is"></input>
                     </div>
                 </form>
-                <button type="submit" className="btn btn-dark" onClick={this.submit_device}>Submit</button>
+                <button type="submit" className="btn btn-outline-dark submit" onClick={this.submit_device}>Submit</button>
             </div>
         )
 
-        const Sen_form = () => (
+        const SenForm = () => (
             <div>
                 <form>
                     <div className="form-group">
@@ -162,18 +156,18 @@ class Devices extends Component {
                         <input type="text" className="form-control" id="sen_id" placeholder="ID of the device the sensor is on"></input>
                     </div>
                 </form>
-                <button type="submit" className="btn btn-dark" onClick={this.submit_sensor}>Submit</button>
+                <button type="submit" className="btn btn-outline-dark submit" onClick={this.submit_sensor}>Submit</button>
             </div>
         )
 
 	    return(
 		    <div className="container">
                 <button type="button" className="btn btn-dark btn-lg btn-block toggle_btns" onClick={this.toggle_loc.bind(this)}>ADD NEW LOCATION</button>
-                {!this.state.loc_btn_hidden && <Loc_form />}
+                {!this.state.loc_btn_hidden && <LocForm />}
                 <button type="button" className="btn btn-dark btn-lg btn-block toggle_btns" onClick={this.toggle_dev.bind(this)}>ADD NEW DEVICE</button>
-                {!this.state.dev_btn_hidden && <Dev_form />}
+                {!this.state.dev_btn_hidden && <DevForm />}
                 <button type="button" className="btn btn-dark btn-lg btn-block toggle_btns" onClick={this.toggle_sen.bind(this)}>ADD NEW SENSOR</button>
-                {!this.state.sen_btn_hidden && <Sen_form />}
+                {!this.state.sen_btn_hidden && <SenForm />}
             </div>
 	    );
 	}

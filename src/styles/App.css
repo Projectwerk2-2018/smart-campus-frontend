@@ -27,12 +27,16 @@
     transform: translate(-50%);
 }
 
-label {
+.login_label {
     color: rgb(161, 161, 161);
     padding-right: 5px; 
 }
 
 .toggle_btns {
+    margin-bottom: 10px;
+    margin-top: 40px;
+}
+
+.submit {
     margin-bottom: 20px;
-    margin-top: 20px;
 }
