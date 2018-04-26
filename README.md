@@ -41,39 +41,32 @@ Forms for adding new locations, devices and sensors.
 ### New location
 ![alt text](./img/new_loc.png "Adding a new location")
 Name:
-```
-    name of the new location
-```
+>   name of the new location
+
 Number:
-```
-    number of the room the new location represents
-```
+>   number of the room the new location represents
+
 Description:
-```
-    short informative description of the room
-```
+>   short informative description of the room
+
 
 ### New Device
 ![alt text](./img/new_dev.png "Adding a new device")
 Name:
-```
-    name of the new device
-```
+>   name of the new device
+
 EUI:
-```
-    eui that belongs to the new device
-```
+>   eui that belongs to the new device
+
 
 ### New sensor
 ![alt text](./img/new_sen.png "Adding a new sensor")
 Name:
-```
-    name of the new sensor
-```
+>   name of the new sensor
+
 Unit:
-```
-    unit in which the new sensor gathers data
-```
+>   unit in which the new sensor gathers data
+
 
 > TODO -> User has to be logged in in order to access this module. Changes can only be done by admin.
 
