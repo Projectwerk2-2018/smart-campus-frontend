@@ -1,6 +1,11 @@
 # base image
 FROM node:9.6.1
 
+# Install and configure `serve`.
+RUN npm install -g serve
+CMD serve -s build
+EXPOSE 5000
+
 # set working directory
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
@@ -15,5 +20,8 @@ RUN npm install
 COPY . .
 
 EXPOSE 3000
+
+RUN npm run build --production
+
 # start app
-CMD ["npm", "start"]
+CMD ["serve", "-s", "build"]
