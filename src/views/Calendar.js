@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Schedule extends Component {
+class Calendar extends Component {
 	  render() {
 	      return(
 		    <div className="App">
@@ -10,4 +10,4 @@ class Schedule extends Component {
 	  }
 }
 
-export default Schedule;
+export default Calendar;
