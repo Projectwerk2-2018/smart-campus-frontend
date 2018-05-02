@@ -1,0 +1,42 @@
+.heading {
+    margin-left: 10px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.navbar {
+    z-index: 1000;
+}
+
+.home_pg {
+    background: url("../img/bg.png") left top fixed no-repeat;
+    background-size: 100%;
+    min-width: 1024px;
+    min-height: 720px;
+}
+
+.box {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.chrt {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.login_label {
+    color: rgb(161, 161, 161);
+    padding-right: 5px; 
+}
+
+.toggle_btns {
+    margin-bottom: 10px;
+    margin-top: 40px;
+}
+
+.submit {
+    margin-bottom: 20px;
+}
