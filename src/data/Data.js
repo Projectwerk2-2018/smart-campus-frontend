@@ -1,8 +1,10 @@
 import axios from 'axios';
 
+const BACKEND_URL = process.env.BACKEND_URL || "https://projectwerk2.herokuapp.com";
+
 function getData() {
     return new Promise((resolve, reject) => {
-        axios.get("https://projectwerk2.herokuapp.com/api/measurements")
+        axios.get(BACKEND_URL + "/api/measurements")
             .then(results => {
                 const sensor_data = results.data.map(element => {
                     return element;
@@ -18,7 +20,7 @@ function getData() {
 
 function getSensors() {
     return new Promise((resolve, reject) => {
-        axios.get("https://projectwerk2.herokuapp.com/api/sensors")
+        axios.get(BACKEND_URL + "/api/sensors")
             .then(results => {
                 const sensors = results.data.map(element => {
                     return element;
@@ -34,7 +36,7 @@ function getSensors() {
 
 function getDevices() {
     return new Promise((resolve, reject) => {
-        axios.get("https://projectwerk2.herokuapp.com/api/devices")
+        axios.get(BACKEND_URL + "/api/devices")
             .then(results => {
                 const devices = results.data.map(element => {
                     return element;
@@ -50,7 +52,7 @@ function getDevices() {
 
 function getLocations() {
     return new Promise((resolve, reject) => {
-        axios.get("https://projectwerk2.herokuapp.com/api/locations")
+        axios.get(BACKEND_URL + "/api/locations")
             .then(results => {
                 const locations = results.data.map(element => {
                     return element;

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+const BACKEND_URL = process.env.BACKEND_URL || "https://projectwerk2.herokuapp.com";
+
 class Devices extends Component {
 
     constructor(props) {
@@ -37,7 +39,7 @@ class Devices extends Component {
         var loc_num = document.getElementById("loc_num").value;
         var loc_desc = document.getElementById("loc_desc").value;
 
-        axios.post("https://projectwerk2.herokuapp.com/api/locations", {
+        axios.post(BACKEND_URL + "/api/locations", {
             "name": loc_name,
             "roomnumber": loc_num,
             "description": loc_desc
@@ -55,7 +57,7 @@ class Devices extends Component {
         var dev_eui = document.getElementById("dev_eui").value;
         var dev_loc = document.getElementById("dev_loc").value; 
 
-        axios.post("https://projectwerk2.herokuapp.com/api/devices", {
+        axios.post(BACKEND_URL + "/api/devices", {
             "name": dev_name,
             "dev-eui": dev_eui,
             "location_id": dev_loc
@@ -73,7 +75,7 @@ class Devices extends Component {
         var sen_unit = document.getElementById("sen_unit").value;
         var sen_id = document.getElementById("sen_id").value;
 
-        axios.post("https://projectwerk2.herokuapp.com/api/sensors", {
+        axios.post(BACKEND_URL + "/api/sensors", {
             "name": sen_name,
             "measurement_unit": sen_unit,
             "device_id": sen_id
