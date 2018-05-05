@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BACKEND_URL = process.env.BACKEND_URL || "http://192.168.99.100:8181";
+const BACKEND_URL = process.env.REACT_APP_API_URL || "http://192.168.99.100:8181";
 
 function getData() {
     return new Promise((resolve, reject) => {
