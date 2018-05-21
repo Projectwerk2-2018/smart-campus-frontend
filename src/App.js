@@ -6,6 +6,7 @@ import Building from './views/Building';
 import Devices from './views/Devices';
 import Calendar from './views/Calendar';
 
+import 'react-selectize/themes/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 
@@ -15,7 +16,7 @@ class App extends Component {
       <Switch>
         <Layout>
           <Route exact path="/" component={ Main } />
-          <Route path="/building" component={ Building } />
+          <Route path="/building" component={ Building }/>
           <Route path="/devices" component={ Devices } />
           <Route path="/calendar" component={ Calendar } />
         </Layout>

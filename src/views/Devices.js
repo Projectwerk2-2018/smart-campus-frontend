@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Data from '../data/Data';
 import axios from 'axios';
 
 class Devices extends Component {
@@ -24,14 +25,25 @@ class Devices extends Component {
             },
             loc_btn_hidden: true,
             dev_btn_hidden: true,
-            sen_btn_hidden: true
+            sen_btn_hidden: true,
+            locs: "",
+            devs: ""
         }
         
         this.submit_location = this.submit_location.bind(this);
         this.submit_device = this.submit_device.bind(this);
         this.submit_sensor = this.submit_sensor.bind(this);
     }
-    
+
+    componentDidMount() {
+        Data.getLocations().then(result => {
+			this.setState({ locs: result });
+        });
+        Data.getDevices().then(result => {
+			this.setState({ devs: result });
+        });
+    }
+
     submit_location() {
         var loc_name = document.getElementById("loc_name").value;
         var loc_num = document.getElementById("loc_num").value;
@@ -53,7 +65,9 @@ class Devices extends Component {
     submit_device() {
         var dev_name = document.getElementById("dev_name").value;
         var dev_eui = document.getElementById("dev_eui").value;
-        var dev_loc = document.getElementById("dev_loc").value; 
+        var dev_loc = document.getElementById("dev_loc").value;
+
+        console.log(document.getElementById("dev_loc").value);
 
         axios.post("https://projectwerk2.herokuapp.com/api/devices", {
             "name": dev_name,
@@ -72,6 +86,8 @@ class Devices extends Component {
         var sen_name = document.getElementById("sen_name").value;
         var sen_unit = document.getElementById("sen_unit").value;
         var sen_id = document.getElementById("sen_id").value;
+
+        console.log(document.getElementById("sen_id").value);
 
         axios.post("https://projectwerk2.herokuapp.com/api/sensors", {
             "name": sen_name,
@@ -119,24 +135,33 @@ class Devices extends Component {
                 <button type="submit" className="btn btn-outline-dark submit" onClick={this.submit_location}>Submit</button>
             </div>
         )
-
         const DevForm = () => (
             <div>
-                <form>
-                    <div className="form-group">
-                        <label>Name</label>
-                        <input type="text" className="form-control" id="dev_name" placeholder="Name of the device"></input>
-                    </div>
-                    <div className="form-group">
-                        <label>EUI</label>
-                        <input type="text" className="form-control" id="dev_eui" placeholder="EUI of the device"></input>
-                    </div>
-                    <div className="form-group">
-                        <label>Location</label>
-                        <input type="text" className="form-control" id="dev_loc" placeholder="ID of the location where the device is"></input>
-                    </div>
-                </form>
-                <button type="submit" className="btn btn-outline-dark submit" onClick={this.submit_device}>Submit</button>
+                <div className="list">
+                    
+                </div>
+                <div className="form">
+                    <form>
+                        <div className="form-group">
+                            <label>Name</label>
+                            <input type="text" className="form-control" id="dev_name" placeholder="Name of the device"></input>
+                        </div>
+                        <div className="form-group">
+                            <label>EUI</label>
+                            <input type="text" className="form-control" id="dev_eui" placeholder="EUI of the device"></input>
+                        </div>
+                        <div className="form-group">
+                            <label>Location</label>
+                            <select className="custom-select" id="dev_loc">
+                                <option defaultValue>Choose the location of the device</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                    </form>
+                    <button type="submit" className="btn btn-outline-dark submit" onClick={this.submit_device}>Submit</button>
+                </div>
             </div>
         )
 
@@ -153,7 +178,12 @@ class Devices extends Component {
                     </div>
                     <div className="form-group">
                         <label>Device ID</label>
-                        <input type="text" className="form-control" id="sen_id" placeholder="ID of the device the sensor is on"></input>
+                        <select className="custom-select" id="sen_id">
+                            <option defaultValue>Choose the device for the sensor</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
                     </div>
                 </form>
                 <button type="submit" className="btn btn-outline-dark submit" onClick={this.submit_sensor}>Submit</button>

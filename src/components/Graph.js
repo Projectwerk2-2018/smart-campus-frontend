@@ -1,122 +1,183 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { red800, blue800, green800, blue400 } from 'material-ui/styles/colors';
 const ReactHighcharts = require('react-highcharts');
 
 class Graph extends Component {
+	
     render() {
-        Highcharts.chart('container', {
-            chart: {
-                type: 'spline'
-            },
-            title: {
-                text: 'Snow depth at Vikjafjellet, Norway'
-            },
-            subtitle: {
-                text: 'Irregular time data in Highcharts JS'
-            },
-            xAxis: {
-                type: 'datetime',
-                dateTimeLabelFormats: { // don't display the dummy year
-                    month: '%e. %b',
-                    year: '%b'
-                },
-                title: {
-                    text: 'Date'
-                }
-            },
-            yAxis: {
-                title: {
-                    text: 'Snow depth (m)'
-                },
-                min: 0
-            },
-            tooltip: {
-                headerFormat: '<b>{series.name}</b><br>',
-                pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
-            },
-        
-            plotOptions: {
-                spline: {
-                    marker: {
-                        enabled: true
-                    }
-                }
-            },
-        
-            series: [{
-                name: 'Winter 2012-2013',
-                // Define the data points. All series have a dummy year
-                // of 1970/71 in order to be compared on the same x axis. Note
-                // that in JavaScript, months start at 0 for January, 1 for February etc.
-                data: [
-                    [Date.UTC(1970, 9, 21), 0],
-                    [Date.UTC(1970, 10, 4), 0.28],
-                    [Date.UTC(1970, 10, 9), 0.25],
-                    [Date.UTC(1970, 10, 27), 0.2],
-                    [Date.UTC(1970, 11, 2), 0.28],
-                    [Date.UTC(1970, 11, 26), 0.28],
-                    [Date.UTC(1970, 11, 29), 0.47],
-                    [Date.UTC(1971, 0, 11), 0.79],
-                    [Date.UTC(1971, 0, 26), 0.72],
-                    [Date.UTC(1971, 1, 3), 1.02],
-                    [Date.UTC(1971, 1, 11), 1.12],
-                    [Date.UTC(1971, 1, 25), 1.2],
-                    [Date.UTC(1971, 2, 11), 1.18],
-                    [Date.UTC(1971, 3, 11), 1.19],
-                    [Date.UTC(1971, 4, 1), 1.85],
-                    [Date.UTC(1971, 4, 5), 2.22],
-                    [Date.UTC(1971, 4, 19), 1.15],
-                    [Date.UTC(1971, 5, 3), 0]
-                ]
-            }, {
-                name: 'Winter 2013-2014',
-                data: [
-                    [Date.UTC(1970, 9, 29), 0],
-                    [Date.UTC(1970, 10, 9), 0.4],
-                    [Date.UTC(1970, 11, 1), 0.25],
-                    [Date.UTC(1971, 0, 1), 1.66],
-                    [Date.UTC(1971, 0, 10), 1.8],
-                    [Date.UTC(1971, 1, 19), 1.76],
-                    [Date.UTC(1971, 2, 25), 2.62],
-                    [Date.UTC(1971, 3, 19), 2.41],
-                    [Date.UTC(1971, 3, 30), 2.05],
-                    [Date.UTC(1971, 4, 14), 1.7],
-                    [Date.UTC(1971, 4, 24), 1.1],
-                    [Date.UTC(1971, 5, 10), 0]
-                ]
-            }, {
-                name: 'Winter 2014-2015',
-                data: [
-                    [Date.UTC(1970, 10, 25), 0],
-                    [Date.UTC(1970, 11, 6), 0.25],
-                    [Date.UTC(1970, 11, 20), 1.41],
-                    [Date.UTC(1970, 11, 25), 1.64],
-                    [Date.UTC(1971, 0, 4), 1.6],
-                    [Date.UTC(1971, 0, 17), 2.55],
-                    [Date.UTC(1971, 0, 24), 2.62],
-                    [Date.UTC(1971, 1, 4), 2.5],
-                    [Date.UTC(1971, 1, 14), 2.42],
-                    [Date.UTC(1971, 2, 6), 2.74],
-                    [Date.UTC(1971, 2, 14), 2.62],
-                    [Date.UTC(1971, 2, 24), 2.6],
-                    [Date.UTC(1971, 3, 2), 2.81],
-                    [Date.UTC(1971, 3, 12), 2.63],
-                    [Date.UTC(1971, 3, 28), 2.77],
-                    [Date.UTC(1971, 4, 5), 2.68],
-                    [Date.UTC(1971, 4, 10), 2.56],
-                    [Date.UTC(1971, 4, 15), 2.39],
-                    [Date.UTC(1971, 4, 20), 2.3],
-                    [Date.UTC(1971, 5, 5), 2],
-                    [Date.UTC(1971, 5, 10), 1.85],
-                    [Date.UTC(1971, 5, 15), 1.49],
-                    [Date.UTC(1971, 5, 23), 1.08]
-                ]
-            }]
-        });
+		var temp = [];
+		var humid = [];
+		var mvmnt = [];
+
+		if (this.props.area.id === "85") {
+			for (var i = 0; i < this.props.data._85.temperature.length; i++) {
+				temp[i] = Number(this.props.data._85.temperature[i].value);
+			}
+			for (var i = 0; i < this.props.data._85.humidity.length; i++) {
+				humid[i] = Number(this.props.data._85.humidity[i].value);
+			}
+			for (var i = 0; i < this.props.data._85.movement.length; i++) {
+				mvmnt[i] = Number(this.props.data._85.movement[i].value);
+			}
+		}
+		if (this.props.area.id === "80") {
+			for (var i = 0; i < this.props.data._80.temperature.length; i++) {
+				temp[i] = Number(this.props.data._80.temperature[i].value);
+			}
+			for (var i = 0; i < this.props.data._80.humidity.length; i++) {
+				humid[i] = Number(this.props.data._80.humidity[i].value);
+			}
+			for (var i = 0; i < this.props.data._80.movement.length; i++) {
+				mvmnt[i] = Number(this.props.data._80.movement[i].value);
+			}
+		}
+		if (this.props.area.id === "75") {
+			for (var i = 0; i < this.props.data._75.temperature.length; i++) {
+				temp[i] = Number(this.props.data._75.temperature[i].value);
+			}
+			for (var i = 0; i < this.props.data._75.humidity.length; i++) {
+				humid[i] = Number(this.props.data._75.humidity[i].value);
+			}
+			for (var i = 0; i < this.props.data._75.movement.length; i++) {
+				mvmnt[i] = Number(this.props.data._75.movement[i].value);
+			}
+		}
+		if (this.props.area.id === "65") {
+			for (var i = 0; i < this.props.data._65.temperature.length; i++) {
+				temp[i] = Number(this.props.data._65.temperature[i].value);
+			}
+			for (var i = 0; i < this.props.data._65.humidity.length; i++) {
+				humid[i] = Number(this.props.data._65.humidity[i].value);
+			}
+			for (var i = 0; i < this.props.data._65.movement.length; i++) {
+				mvmnt[i] = Number(this.props.data._65.movement[i].value);
+			}
+		}
+		if (this.props.area.id === "01") {
+			for (var i = 0; i < this.props.data._01.temperature.length; i++) {
+				temp[i] = Number(this.props.data._01.temperature[i].value);
+			}
+			for (var i = 0; i < this.props.data._01.humidity.length; i++) {
+				humid[i] = Number(this.props.data._01.humidity[i].value);
+			}
+			for (var i = 0; i < this.props.data._01.movement.length; i++) {
+				mvmnt[i] = Number(this.props.data._01.movement[i].value);
+			}
+		}
+		
+		console.log(temp)
+
+        var chart = {
+			chart: {
+				zoomtype: 'xy'
+			},
+
+			title: {
+				text: 'Temperature, humidity and movement history for room 2.' + this.props.area.id
+			},
+
+			xAxis: {
+				type: 'datetime',
+				dateTimeLabelFormats: {
+					month: '%e. %b',
+					year: '%b'
+				},
+				title: {
+					text: 'Date'
+				},
+				crosshair: true
+			},
+
+			yAxis: [{
+				labels: {
+					format: '{value}°C',
+					style: {
+						color: red800
+					}
+				},
+				title: {
+					text: 'Temperature',
+					style: {
+						color: red800
+					}
+				}
+			}, {
+				gridLineWidth: 0,
+				title: {
+					text: 'Humidity',
+					style: {
+						color: blue800
+					}
+				},
+				labels: {
+					format: '{value} %',
+					style: {
+						color: blue800
+					}
+				},
+				opposite: true
+			}, {
+				gridLineWidth: 0,
+				title: {
+					text: 'Movement',
+					style: {
+						color: green800
+					}
+				},
+				labels: {
+					format: '{value}',
+					style: {
+						color: green800
+					}
+				},
+				opposite: true
+			}],
+
+			plotOptions: {
+				spline: {
+					marker: {
+						enabled: true
+					}
+				}
+			},
+
+			tooltip: {
+				shared: true
+			},
+
+			series: [{
+				name: 'Temperature',
+				type: 'spline',
+				data: temp,
+				tooltip: {
+					valueSuffix: ' °C'
+				},
+				color: red800
+			}, {
+				name: 'Humidity',
+				type: 'spline',
+				yAxis: 1,
+				data: humid,
+				tooltip: {
+					valueSuffix: ' %'
+				},
+				color: blue400
+			}, {
+				name: 'Movement',
+				type: 'spline',
+				yAxis: 2,
+				data: mvmnt,
+				tooltip: {
+					valueSuffix: ' people in the room'
+				},
+				color: green800
+			}]
+		};
 
         return (
-            <div className="chart">
-                <ReactHighcharts config = { chart }></ReactHighcharts>
+            <div className="chart" id="chart">
+                <ReactHighcharts config={ chart }></ReactHighcharts>
             </div>
         )
     }

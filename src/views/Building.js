@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Data from '../data/Data'
+import Graph from '../components/Graph'
 import ImageMapper from 'react-image-mapper';
-const ReactHighcharts = require('react-highcharts');
 
 class Building extends Component {
 
@@ -9,16 +9,26 @@ class Building extends Component {
 		super(props); 
 
 		this.state = {
+			plan: "",
 			MAP: {},
 			width: 0,
-			sensor_data: "",
-			chart: {}
+			data: {
+				_01: "",
+				_65: "",
+				_75: "",
+				_80: "",
+				_85: ""
+			},
+			temp_data: [],
+			humid_data: [],
+			mvmnt_data: [],
+			area: {}
 		}
 
 		this.updateDimensions = this.updateDimensions.bind(this);
 		this.temp_style = this.temp_style.bind(this);
 		this.humid_style = this.humid_style.bind(this);
-		this.occup_style = this.occup_style.bind(this);
+		this.mvmnt_style = this.mvmnt_style.bind(this);
 		this.click_handle = this.click_handle.bind(this);
 	}
 
@@ -27,11 +37,11 @@ class Building extends Component {
 			MAP = {
 				name: "my-map",
 				areas: [
-				  { id: "2.01", shape: "rect", coords: [width*0.583, width*0.097, width*0.696, width*0.239] },
-				  { id: "2.85", shape: "rect", coords: [width*0.059, width*0.116, width*0.123, width*0.239] },
-				  { id: "2.80", shape: "rect", coords: [width*0.126, width*0.116, width*0.210, width*0.239] },
-				  { id: "2.75", shape: "rect", coords: [width*0.213, width*0.116, width*0.287, width*0.239] },
-				  { id: "2.65", shape: "rect", coords: [width*0.289, width*0.116, width*0.364, width*0.239] }
+				  { id: "01", shape: "rect", coords: [width*0.583, width*0.097, width*0.696, width*0.239] },
+				  { id: "85", shape: "rect", coords: [width*0.059, width*0.116, width*0.123, width*0.239] },
+				  { id: "80", shape: "rect", coords: [width*0.126, width*0.116, width*0.210, width*0.239] },
+				  { id: "75", shape: "rect", coords: [width*0.213, width*0.116, width*0.287, width*0.239] },
+				  { id: "65", shape: "rect", coords: [width*0.289, width*0.116, width*0.364, width*0.239] }
 				]
 			}
 	
@@ -45,12 +55,74 @@ class Building extends Component {
 	componentWillUpdate() {
 //		window.location.reload();
 	}
-	
+
 	componentDidMount() {
 		window.addEventListener("resize", this.updateDimensions);
 		document.getElementById("chrt").style.display = "none";
-		Data.getData().then(result => {
-			this.setState({ sensor_data: result });
+
+		var joined_temp;
+		var joined_humid;
+		var joined_mvmnt;
+
+		Data.getData265().then(result => {
+			this.setState({ data: {
+				...this.state.data,
+				_85: result}
+			});
+			joined_temp = this.state.temp_data.concat(result.temperature[0]);
+			this.setState({ temp_data: joined_temp });
+			joined_humid = this.state.humid_data.concat(result.humidity[0]);
+			this.setState({ humid_data: joined_humid });
+			joined_mvmnt = this.state.mvmnt_data.concat(result.movement[0]);
+			this.setState({ mvmnt_data: joined_mvmnt });
+		});
+		Data.getData265().then(result => {
+			this.setState({ data: {
+				...this.state.data,
+				_80: result}
+			});
+			joined_temp = this.state.temp_data.concat(result.temperature[0]);
+			this.setState({ temp_data: joined_temp });
+			joined_humid = this.state.humid_data.concat(result.humidity[0]);
+			this.setState({ humid_data: joined_humid });
+			joined_mvmnt = this.state.mvmnt_data.concat(result.movement[0]);
+			this.setState({ mvmnt_data: joined_mvmnt });
+		});
+		Data.getData265().then(result => {
+			this.setState({ data: {
+				...this.state.data,
+				_75: result}
+			});
+			joined_temp = this.state.temp_data.concat(result.temperature[0]);
+			this.setState({ temp_data: joined_temp });
+			joined_humid = this.state.humid_data.concat(result.humidity[0]);
+			this.setState({ humid_data: joined_humid });
+			joined_mvmnt = this.state.mvmnt_data.concat(result.movement[0]);
+			this.setState({ mvmnt_data: joined_mvmnt });
+		});
+		Data.getData265().then(result => {
+			this.setState({ data: {
+				...this.state.data,
+				_65: result}
+			});
+			joined_temp = this.state.temp_data.concat(result.temperature[0]);
+			this.setState({ temp_data: joined_temp });
+			joined_humid = this.state.humid_data.concat(result.humidity[0]);
+			this.setState({ humid_data: joined_humid });
+			joined_mvmnt = this.state.mvmnt_data.concat(result.movement[0]);
+			this.setState({ mvmnt_data: joined_mvmnt });
+		});
+		Data.getData265().then(result => {
+			this.setState({ data: {
+				...this.state.data,
+				_01: result}
+			});
+			joined_temp = this.state.temp_data.concat(result.temperature[0]);
+			this.setState({ temp_data: joined_temp });
+			joined_humid = this.state.humid_data.concat(result.humidity[0]);
+			this.setState({ humid_data: joined_humid });
+			joined_mvmnt = this.state.mvmnt_data.concat(result.movement[0]);
+			this.setState({ mvmnt_data: joined_mvmnt });
 		});
 	}
 	
@@ -62,28 +134,26 @@ class Building extends Component {
 		var temp = [];
 		var arr = [];
 		var margin = 0.072;
-//		var value = this.state.sensor_data.map()
 
 		for (var i = 0; i < 5; i++) {
 			temp[i] = { position: 'absolute',
 						top: this.state.width*0.15,
 						left: this.state.width*margin,
-						'font-size': this.state.width*0.007,
-						'font-weight': 'bold' }
+						'fontSize': this.state.width*0.007,
+						'fontWeight': 'bold' }
 			margin = margin+0.079;
 			if (i === 4) {
 				temp[i] = { position: 'absolute',
 							top: this.state.width*0.13,
 							left: this.state.width*0.62,
-							'font-size': this.state.width*0.007,
-							'font-weight': 'bold' }
+							'fontSize': this.state.width*0.007,
+							'fontWeight': 'bold' }
 			}
-			if (this.state.sensor_data[i] !== undefined) {
-				arr[i] = <span style={temp[i]}>TEMP: {this.state.sensor_data[i].value + "°C"}</span>
+			if (this.state.temp_data[i] !== undefined) {
+				arr[i] = <span style={temp[i]}>TEMP: {this.state.temp_data[i].value + "°C"}</span>
 			}
 		}
-
-		return arr
+		return arr;
 	}
 
 	humid_style() {
@@ -95,119 +165,76 @@ class Building extends Component {
 			humid[i] = { position: 'absolute',
 						top: this.state.width*0.16,
 						left: this.state.width*margin,
-						'font-size': this.state.width*0.007,
-						'font-weight': 'bold' }
+						'fontSize': this.state.width*0.007,
+						'fontWeight': 'bold' }
 			margin = margin+0.079;
 			if (i === 4) {
 				humid[i] = { position: 'absolute',
 							top: this.state.width*0.14,
 							left: this.state.width*0.618,
-							'font-size': this.state.width*0.007,
-							'font-weight': 'bold' }
+							'fontSize': this.state.width*0.007,
+							'fontWeight': 'bold' }
 			}
-			arr[i] = <span style={humid[i]}>HUMID: {this.state.data}</span>
+			if (this.state.humid_data[i] !== undefined) {
+				arr[i] = <span style={humid[i]}>TEMP: {this.state.humid_data[i].value + "%"}</span>
+			}
 		}
 
-		return arr
+		return arr;
 	}
 
-	occup_style() {
-		var occup = [];
+	mvmnt_style() {
+		var mvmnt = [];
 		var arr = [];
 		var margin = 0.071;
 
 		for (var i = 0; i < 5; i++) {
-			occup[i] = { position: 'absolute',
+			mvmnt[i] = { position: 'absolute',
 						top: this.state.width*0.17,
 						left: this.state.width*margin,
-						'font-size': this.state.width*0.007,
-						'font-weight': 'bold' }
+						'fontSize': this.state.width*0.007,
+						'fontWeight': 'bold' }
 			margin = margin+0.079;
 			if (i === 4) {
-				occup[i] = { position: 'absolute',
+				mvmnt[i] = { position: 'absolute',
 							top: this.state.width*0.15,
 							left: this.state.width*0.618,
-							'font-size': this.state.width*0.007,
-							'font-weight': 'bold' }
+							'fontSize': this.state.width*0.007,
+							'fontWeight': 'bold' }
 			}
-			arr[i] = <span style={occup[i]}>OCCUP: {this.state.data}</span>
+			if (this.state.mvmnt_data[i] !== undefined) {
+				arr[i] = <span style={mvmnt[i]}>MVMNT: {this.state.mvmnt_data[i].value}</span>
+			}
 		}
 		
-		return arr
+		return arr;
 	}
 
 	click_handle(area) {
-		var chart = {
-			chart: {
-				type: 'spline'
-			},
-			title: {
-				text: 'Temperature history for room ' + area.id
-			},
-			xAxis: {
-				type: 'datetime',
-				dateTimeLabelFormats: {
-					month: '%e. %b',
-					year: '%b'
-				},
-				title: {
-					text: 'Date'
-				}
-			},
-			yAxis: {
-				title: {
-					text: 'Temperature'
-				},
-				min: 0
-			},
-			plotOptions: {
-				spline: {
-					marker: {
-						enabled: true
-					}
-				}
-			},
-			series: [{
-				name: 'Winter 2013-2014',
-				data: [
-					[Date.UTC(1970, 9, 29), 0],
-					[Date.UTC(1970, 10, 9), 0.4],
-					[Date.UTC(1970, 11, 1), 0.25],
-					[Date.UTC(1971, 0, 1), 1.66],
-					[Date.UTC(1971, 0, 10), 1.8],
-					[Date.UTC(1971, 1, 19), 1.76],
-					[Date.UTC(1971, 2, 25), 2.62],
-					[Date.UTC(1971, 3, 19), 2.41],
-					[Date.UTC(1971, 3, 30), 2.05],
-					[Date.UTC(1971, 4, 14), 1.7],
-					[Date.UTC(1971, 4, 24), 1.1],
-					[Date.UTC(1971, 5, 10), 0]
-				]
-			}]
-		};
-
 		document.getElementById("chrt").style.display = "initial";
-
-		this.setState({chart})
+		this.setState({ area });
+		this.setState(this.state.data);
 	}
 
 	//<img src={require("../img/floor.svg")} className="img-fluid floor" alt="Responsive image"></img>
 	//<ImageMapper src={require("../img/floor_plan.svg")} map={MAP} width={this.state.width} fillColor={"rgba(141, 128, 229, 0.6)"}/>
+	//<Graph area={this.state.area}/>
 
 	render() {
-		console.log(this.state.sensor_data[0])
 	    return (
 			<div className="box">
 				<ImageMapper src={require("../img/floor_plan.svg")}
-							map={this.state.MAP}
-							width={this.state.width*0.7}
-							fillColor={"rgba(141, 128, 229, 0.3)"}
-							onClick={(this.state.MAP.areas, this.click_handle)}/>
+						id="map"
+						width={this.state.width*0.7}
+						map={this.state.MAP}
+						fillColor={"rgba(141, 128, 229, 0.3)"}
+						onClick={(this.state.MAP.areas, this.click_handle)}/>
 				{this.temp_style()}
 				{this.humid_style()}
-				{this.occup_style()}
-				<div className="chrt" id="chrt" key="chrt">
-					<ReactHighcharts config = {this.state.chart}></ReactHighcharts>
+				{this.mvmnt_style()}
+				<div className="chrt" id="chrt">
+					<Graph area={this.state.area}
+							data={this.state.data}/>
 				</div>
 			</div>
 	    );
