@@ -14,54 +14,54 @@ class Graph extends Component {
 			for (var i = 0; i < this.props.data._85.temperature.length; i++) {
 				temp[i] = Number(this.props.data._85.temperature[i].value);
 			}
-			for (var i = 0; i < this.props.data._85.humidity.length; i++) {
+			for (i = 0; i < this.props.data._85.humidity.length; i++) {
 				humid[i] = Number(this.props.data._85.humidity[i].value);
 			}
-			for (var i = 0; i < this.props.data._85.movement.length; i++) {
+			for (i = 0; i < this.props.data._85.movement.length; i++) {
 				mvmnt[i] = Number(this.props.data._85.movement[i].value);
 			}
 		}
 		if (this.props.area.id === "80") {
-			for (var i = 0; i < this.props.data._80.temperature.length; i++) {
+			for (i = 0; i < this.props.data._80.temperature.length; i++) {
 				temp[i] = Number(this.props.data._80.temperature[i].value);
 			}
-			for (var i = 0; i < this.props.data._80.humidity.length; i++) {
+			for (i = 0; i < this.props.data._80.humidity.length; i++) {
 				humid[i] = Number(this.props.data._80.humidity[i].value);
 			}
-			for (var i = 0; i < this.props.data._80.movement.length; i++) {
+			for (i = 0; i < this.props.data._80.movement.length; i++) {
 				mvmnt[i] = Number(this.props.data._80.movement[i].value);
 			}
 		}
 		if (this.props.area.id === "75") {
-			for (var i = 0; i < this.props.data._75.temperature.length; i++) {
+			for (i = 0; i < this.props.data._75.temperature.length; i++) {
 				temp[i] = Number(this.props.data._75.temperature[i].value);
 			}
-			for (var i = 0; i < this.props.data._75.humidity.length; i++) {
+			for (i = 0; i < this.props.data._75.humidity.length; i++) {
 				humid[i] = Number(this.props.data._75.humidity[i].value);
 			}
-			for (var i = 0; i < this.props.data._75.movement.length; i++) {
+			for (i = 0; i < this.props.data._75.movement.length; i++) {
 				mvmnt[i] = Number(this.props.data._75.movement[i].value);
 			}
 		}
 		if (this.props.area.id === "65") {
-			for (var i = 0; i < this.props.data._65.temperature.length; i++) {
+			for (i = 0; i < this.props.data._65.temperature.length; i++) {
 				temp[i] = Number(this.props.data._65.temperature[i].value);
 			}
-			for (var i = 0; i < this.props.data._65.humidity.length; i++) {
+			for (i = 0; i < this.props.data._65.humidity.length; i++) {
 				humid[i] = Number(this.props.data._65.humidity[i].value);
 			}
-			for (var i = 0; i < this.props.data._65.movement.length; i++) {
+			for (i = 0; i < this.props.data._65.movement.length; i++) {
 				mvmnt[i] = Number(this.props.data._65.movement[i].value);
 			}
 		}
 		if (this.props.area.id === "01") {
-			for (var i = 0; i < this.props.data._01.temperature.length; i++) {
+			for (i = 0; i < this.props.data._01.temperature.length; i++) {
 				temp[i] = Number(this.props.data._01.temperature[i].value);
 			}
-			for (var i = 0; i < this.props.data._01.humidity.length; i++) {
+			for (i = 0; i < this.props.data._01.humidity.length; i++) {
 				humid[i] = Number(this.props.data._01.humidity[i].value);
 			}
-			for (var i = 0; i < this.props.data._01.movement.length; i++) {
+			for (i = 0; i < this.props.data._01.movement.length; i++) {
 				mvmnt[i] = Number(this.props.data._01.movement[i].value);
 			}
 		}

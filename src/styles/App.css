@@ -41,3 +41,7 @@
 .submit {
     margin-bottom: 20px;
 }
+
+.active_item {
+    font-size: 12px;
+}
