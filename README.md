@@ -23,7 +23,7 @@ To view app then go to **http://localhost:3000/**
 
 ## Dependencies
 
-Usage of third party libraries: bootstrap v.4, react-router, axios, react-highcharts and react-image-mapper.
+Usage of third party libraries: bootstrap v.4, react-router, axios, react-highcharts, momentjs and react-image-mapper.
 
 ## NAVIGATION
 
