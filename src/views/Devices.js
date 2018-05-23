@@ -106,11 +106,7 @@ class Devices extends Component {
         var loc_num = document.getElementById("loc_num").value;
         var loc_desc = document.getElementById("loc_desc").value;
 
-<<<<<<< HEAD
-        axios.post("https://backend.vives-smart-campus.be/api/locations", {
-=======
         axios.post(BACKEND_URL + "/api/locations", {
->>>>>>> origin/develop
             "name": loc_name,
             "roomnumber": loc_num,
             "description": loc_desc
@@ -128,11 +124,7 @@ class Devices extends Component {
         var dev_eui = document.getElementById("dev_eui").value;
         var dev_loc = document.getElementById("dev_loc").value;
 
-<<<<<<< HEAD
-        axios.post("https://backend.vives-smart-campus.be/api/devices", {
-=======
         axios.post(BACKEND_URL + "/api/devices", {
->>>>>>> origin/develop
             "name": dev_name,
             "dev-eui": dev_eui,
             "location_id": dev_loc
@@ -150,11 +142,7 @@ class Devices extends Component {
         var sen_unit = document.getElementById("sen_unit").value;
         var sen_id = document.getElementById("sen_id").value;
 
-<<<<<<< HEAD
-        axios.post("https://backend.vives-smart-campus.be/api/sensors", {
-=======
         axios.post(BACKEND_URL + "/api/sensors", {
->>>>>>> origin/develop
             "name": sen_name,
             "measurement_unit": sen_unit,
             "device_id": sen_id

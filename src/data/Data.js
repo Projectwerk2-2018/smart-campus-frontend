@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_API_URL || "http://192.168.99.100:8181";
 
-function getData() {
+function getData265() {
     return new Promise((resolve, reject) => {
-        axios.get(BACKEND_URL + "/api/measurements")
+        axios.get(BACKEND_URL + "/api/locations/room/2.65")
             .then(results => {
                 const sensor_data = results.data;
                 resolve(sensor_data);
@@ -18,7 +18,7 @@ function getData() {
 
 function getData275() {
     return new Promise((resolve, reject) => {
-        axios.get("https://backend.vives-smart-campus.be/api/locations/room/2.75")
+        axios.get(BACKEND_URL + "/api/locations/room/2.75")
             .then(results => {
                 const sensor_data = results.data;
                 resolve(sensor_data);
@@ -32,7 +32,7 @@ function getData275() {
 
 function getData280() {
     return new Promise((resolve, reject) => {
-        axios.get("https://backend.vives-smart-campus.be/api/locations/room/2.80")
+        axios.get(BACKEND_URL + "/api/locations/room/2.80")
             .then(results => {
                 const sensor_data = results.data;
                 resolve(sensor_data);
@@ -46,7 +46,7 @@ function getData280() {
 
 function getData285() {
     return new Promise((resolve, reject) => {
-        axios.get("https://backend.vives-smart-campus.be/api/locations/room/2.85")
+        axios.get(BACKEND_URL + "/api/locations/room/2.85")
             .then(results => {
                 const sensor_data = results.data;
                 resolve(sensor_data);
@@ -60,7 +60,7 @@ function getData285() {
 
 function getData201() {
     return new Promise((resolve, reject) => {
-        axios.get("https://backend.vives-smart-campus.be/api/locations/room/2.01")
+        axios.get(BACKEND_URL + "/api/locations/room/2.01")
             .then(results => {
                 const sensor_data = results.data;
                 resolve(sensor_data);
@@ -74,11 +74,7 @@ function getData201() {
 
 function getSensors() {
     return new Promise((resolve, reject) => {
-<<<<<<< HEAD
-        axios.get("https://backend.vives-smart-campus.be/api/api/sensors")
-=======
         axios.get(BACKEND_URL + "/api/sensors")
->>>>>>> origin/develop
             .then(results => {
                 const sensors = results.data.map(element => {
                     return element;
@@ -94,11 +90,7 @@ function getSensors() {
 
 function getDevices() {
     return new Promise((resolve, reject) => {
-<<<<<<< HEAD
-        axios.get("https://backend.vives-smart-campus.be/api/api/devices")
-=======
         axios.get(BACKEND_URL + "/api/devices")
->>>>>>> origin/develop
             .then(results => {
                 const devices = results.data.map(element => {
                     return element;
@@ -114,11 +106,7 @@ function getDevices() {
 
 function getLocations() {
     return new Promise((resolve, reject) => {
-<<<<<<< HEAD
-        axios.get("https://backend.vives-smart-campus.be/api/api/locations")
-=======
         axios.get(BACKEND_URL + "/api/locations")
->>>>>>> origin/develop
             .then(results => {
                 const locations = results.data.map(element => {
                     return element;
