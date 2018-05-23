@@ -2,7 +2,7 @@ import axios from 'axios';
 
 function getData265() {
     return new Promise((resolve, reject) => {
-        axios.get("https://projectwerk2.herokuapp.com/api/locations/room/2.65")
+        axios.get("https://backend.vives-smart-campus.be/api/locations/room/2.65")
             .then(results => {
                 const sensor_data = results.data;
                 resolve(sensor_data);
@@ -16,7 +16,7 @@ function getData265() {
 
 function getData275() {
     return new Promise((resolve, reject) => {
-        axios.get("https://projectwerk2.herokuapp.com/api/locations/room/2.75")
+        axios.get("https://backend.vives-smart-campus.be/api/locations/room/2.75")
             .then(results => {
                 const sensor_data = results.data;
                 resolve(sensor_data);
@@ -30,7 +30,7 @@ function getData275() {
 
 function getData280() {
     return new Promise((resolve, reject) => {
-        axios.get("https://projectwerk2.herokuapp.com/api/locations/room/2.80")
+        axios.get("https://backend.vives-smart-campus.be/api/locations/room/2.80")
             .then(results => {
                 const sensor_data = results.data;
                 resolve(sensor_data);
@@ -44,7 +44,7 @@ function getData280() {
 
 function getData285() {
     return new Promise((resolve, reject) => {
-        axios.get("https://projectwerk2.herokuapp.com/api/locations/room/2.85")
+        axios.get("https://backend.vives-smart-campus.be/api/locations/room/2.85")
             .then(results => {
                 const sensor_data = results.data;
                 resolve(sensor_data);
@@ -58,7 +58,7 @@ function getData285() {
 
 function getData201() {
     return new Promise((resolve, reject) => {
-        axios.get("https://projectwerk2.herokuapp.com/api/locations/room/2.01")
+        axios.get("https://backend.vives-smart-campus.be/api/locations/room/2.01")
             .then(results => {
                 const sensor_data = results.data;
                 resolve(sensor_data);
@@ -72,7 +72,7 @@ function getData201() {
 
 function getSensors() {
     return new Promise((resolve, reject) => {
-        axios.get("https://projectwerk2.herokuapp.com/api/sensors")
+        axios.get("https://backend.vives-smart-campus.be/api/api/sensors")
             .then(results => {
                 const sensors = results.data.map(element => {
                     return element;
@@ -88,7 +88,7 @@ function getSensors() {
 
 function getDevices() {
     return new Promise((resolve, reject) => {
-        axios.get("https://projectwerk2.herokuapp.com/api/devices")
+        axios.get("https://backend.vives-smart-campus.be/api/api/devices")
             .then(results => {
                 const devices = results.data.map(element => {
                     return element;
@@ -104,7 +104,7 @@ function getDevices() {
 
 function getLocations() {
     return new Promise((resolve, reject) => {
-        axios.get("https://projectwerk2.herokuapp.com/api/locations")
+        axios.get("https://backend.vives-smart-campus.be/api/api/locations")
             .then(results => {
                 const locations = results.data.map(element => {
                     return element;
