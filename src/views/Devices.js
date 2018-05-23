@@ -36,6 +36,9 @@ class Devices extends Component {
         this.submit_sensor = this.submit_sensor.bind(this);
         this.locations = this.locations.bind(this);
         this.devices = this.devices.bind(this);
+        this.active_devs = this.active_devs.bind(this);
+        this.active_locs = this.active_locs.bind(this);
+        this.active_sens = this.active_sens.bind(this);
     }
 
     componentDidMount() {
