@@ -23,5 +23,8 @@ EXPOSE 3000
 
 RUN npm run build --production
 
+RUN chmod +x /usr/src/app/run
+
 # start app
-CMD ["serve", "-s", "build"]
+# CMD ["serve", "-s", "build"]
+CMD ["/usr/src/app/run"]
