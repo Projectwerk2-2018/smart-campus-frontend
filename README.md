@@ -28,6 +28,7 @@ Usage of third party libraries: bootstrap v.4, react-router, axios, react-highch
 ## NAVIGATION
 
 The webapp has a navbar located at the top of the screen.
+It contains the login form as well.
 
 ![alt text](./rdm-img/nav.png "The navbar")
 
@@ -60,6 +61,8 @@ They show the most recent temperature, humidity and occupancy in the room.
 ## DEVICES
 
 Forms for adding new locations, devices and sensors.
+Also contains lists of already active locations, devices and sensors.
+This route is only accessible with the correct login information.
 
 ![alt text](./rdm-img/devices.png "Devices section")
 
@@ -85,8 +88,6 @@ Name:
 >   name of the new sensor
 Unit:
 >   unit in which the new sensor gathers data
-
-> TODO -> User has to be logged in in order to access this module. Changes can only be done by admin.
 
 ## CALENDAR
 
